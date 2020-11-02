@@ -1,0 +1,5 @@
+main: me.progamer.proconomy.Main
+name: Proconomy
+description: An economy API and plugin
+version: 0.0.1
+author: Progamer260

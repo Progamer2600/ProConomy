@@ -15,11 +15,13 @@ public class Main extends JavaPlugin {
     private File playerAccounts;
     private FileConfiguration fileConfiguration;
 
+
     @Override
     public void onEnable() {
-        createDataFolder();
         getServer().getPluginManager().registerEvents(new Account(), this);
+        createDataFolder();
     }
+
 
     @Override
     public void onDisable() {
@@ -33,13 +35,14 @@ public class Main extends JavaPlugin {
         playerAccounts = new File(getDataFolder(), "PlayerAccounts.yml");
 
         if (!playerAccounts.exists()) {
-            playerAccounts.getParentFile().mkdirs();
-            saveResource("PlayerAccounts.yml", false);
+           fileConfiguration = YamlConfiguration.loadConfiguration(playerAccounts);
+           saveData();
         }
-        fileConfiguration = new YamlConfiguration();
+    }
+    public void saveData() {
         try {
-            fileConfiguration.load(playerAccounts);
-        } catch (IOException | InvalidConfigurationException e) {
+            fileConfiguration.save(playerAccounts);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
