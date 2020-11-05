@@ -3,3 +3,8 @@ name: Proconomy
 description: An economy API and plugin
 version: 0.0.1
 author: Progamer260
+commands:
+  bal:
+    description: returns the balance
+  balance:
+    description: returns the balance

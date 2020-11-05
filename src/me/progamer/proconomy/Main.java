@@ -1,5 +1,6 @@
 package me.progamer.proconomy;
 
+import me.progamer.proconomy.commands.balance;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -18,8 +19,11 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        getCommand("bal").setExecutor(new balance());
+        getCommand("balance").setExecutor(new balance());
         getServer().getPluginManager().registerEvents(new Account(), this);
         createDataFolder();
+        //System.out.println(playerAccounts.get);
     }
 
 
@@ -46,4 +50,13 @@ public class Main extends JavaPlugin {
             e.printStackTrace();
         }
     }
+    public void loadData() {
+
+        if (playerAccounts.exists()) {
+            fileConfiguration = YamlConfiguration.loadConfiguration(playerAccounts);
+        } else {
+            //fileConfiguration = YamlConfiguration.loadConfiguration(getResource("PlayerAccounts.yml"));
+        }
+    }
+
 }
