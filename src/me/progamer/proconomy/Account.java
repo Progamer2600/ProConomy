@@ -1,23 +1,26 @@
 package me.progamer.proconomy;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class Account implements Listener {
-   private Main main = Main.getPlugin(Main.class);
+   private final Main main = Main.getPlugin(Main.class);
+   private final Configuration config = main.getConfig();
 
    @EventHandler
     public void firstJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if (!main.getAccountData().contains(player.getName())) {
-            main.getAccountData().createSection(player.getName());
-            main.getAccountData().set(player.getName() + ".balance", 0 );
-            main.saveData();
+        String playerName = player.getName();
+
+        if (!config.contains(playerName)) {
+            System.out.println("Pass");
+            config.set(playerName + ".balance", 0 );
         } else {
-            return;
+            System.out.println("Psasaasaaass");
+
         }
     }
 }
